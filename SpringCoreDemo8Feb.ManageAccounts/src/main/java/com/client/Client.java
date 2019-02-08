@@ -2,18 +2,24 @@ package com.client;
 
 import java.util.Scanner;
 
+import org.springframework.beans.factory.BeanFactory;
+import org.springframework.beans.factory.xml.XmlBeanFactory;
+import org.springframework.core.io.ClassPathResource;
+
 import com.java.dto.Account;
 import com.java.dto.AccountType;
 import com.java.exception.DatabaseException;
 import com.java.service.AccountService;
-import com.java.service.AccountServiceImpl;
 
 //core java: serialization/ read a file/ cloning/ hashmap 
 public class Client {
 
-	static AccountService service= new AccountServiceImpl();
+	
 
 	public static void main(String[] args) {
+		BeanFactory factory= new XmlBeanFactory(new ClassPathResource("spring-config.xml"));
+		//start ur spring container. Lazy loading. getBean(): at that time it will create the object for that bean
+		AccountService service=factory.getBean(AccountService.class);
 		Scanner scanner = new Scanner(System.in);
 		while (true) {
 			System.out.println("Choose the option:");

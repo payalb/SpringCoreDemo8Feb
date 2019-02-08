@@ -1,7 +1,6 @@
 package com.java.dto;
 
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 //This code would be automatically added at the compile time.

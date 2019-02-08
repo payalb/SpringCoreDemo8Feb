@@ -1,7 +1,5 @@
 package com.java.dao.util;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -15,7 +13,7 @@ public class DBUtil {
 	static Properties property= new Properties();
 	static {
 		try {
-		property.load(new FileInputStream("database.properties"));
+		property.load(DBUtil.class.getResourceAsStream("/database.properties"));
 		connectionPool.setDriverClassName(property.getProperty("driverClassName"));
 		connectionPool.setUrl(property.getProperty("url"));
 		connectionPool.setUsername(property.getProperty("username"));

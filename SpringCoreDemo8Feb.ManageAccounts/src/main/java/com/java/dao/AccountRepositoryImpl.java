@@ -3,7 +3,6 @@ package com.java.dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.List;
 
 import com.java.dao.util.DBUtil;
@@ -24,11 +23,10 @@ public class AccountRepositoryImpl implements AccountRepository {
 			// Prevent sql injection: data is coming from a form: input test field:
 			// number: select * from account where accountNumber= ?: 1 or 1 == 1: 1; drop
 			// table accounts
-			PreparedStatement st = c.prepareStatement("Insert into account values (?,?,?,?)");
-			st.setInt(1, 1001);
+			PreparedStatement st = c.prepareStatement("Insert into account (holderName, balance, \"type\") values (?,?,?)");
 			st.setString(1, "Payal");
 			st.setFloat(2, 23767464.4f);
-			st.setObject(3, AccountType.SAVINGS);
+			st.setString(3, AccountType.SAVINGS.name());
 			st.executeUpdate();
 			/* select account_seq.curval from temp; */
 
